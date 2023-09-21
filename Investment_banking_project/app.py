@@ -14,7 +14,7 @@ def process():
 
     # Call the OpenAI API with the prompt
     response = openai.Completion.create(
-        engine="davinci",
+        engine="",
         prompt=prompt,
         max_tokens=150  
     )
