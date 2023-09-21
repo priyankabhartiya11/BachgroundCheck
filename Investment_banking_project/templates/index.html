@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Investment banking Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Investment Banking</h1>
+        <div class="chat-container">
+            <div id="chat">
+                <div class="message received">
+                    <p style="white-space: nowrap;">Invest with Confidence: Your Gateway to Smart Investments</p>
+
+                </div>
+            </div>
+            <form id="chat-form">
+                <input type="text" id="user-input" placeholder="Type your message..." required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const chat = document.getElementById('chat');
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userMessage = userInput.value;
+            addMessage('user', userMessage);
+
+            fetch('/process', {
+                method: 'POST',
+                body: new URLSearchParams({ prompt: userMessage }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    const botMessage = data.reply;
+                    addMessage('bot', botMessage);
+                });
+
+            userInput.value = '';
+        });
+
+        function addMessage(sender, message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender);
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            chat.appendChild(messageDiv);
+        }
+    </script>
+</body>
+</html>
