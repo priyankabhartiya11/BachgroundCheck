@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Investment banking Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Investment banking Interface</h1>
+        <div class="chat-container">
+            <div id="chat">
+                <div class="message received">
+                    <p style="white-space: nowrap;">Invest with Confidence: Your Gateway to Smart Investments</p>
+                </div>
+            </div>
+            <form method="POST">
+                <input type="text" name="prompt" placeholder="Enter your prompt">
+                <button type="submit" style="font-size: 14px; padding: 5px 10px;">Submit</button>
+
+                <!-- <button type="submit">Submit</button> -->
+            </form>
+        </div>
+    </div>
+</body>
+</html>
