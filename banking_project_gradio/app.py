@@ -4,7 +4,7 @@ import re
 from flask import Flask, request, render_template
 
 # Set your OpenAI API key here
-openai.api_key = "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"
+openai.api_key = ""
 
 app = Flask(__name__)
 
@@ -48,7 +48,7 @@ def investor_form(investor_name):
     print("Criminal Background:", criminal_background)
 
 
-    # Create a form HTML with the fetched data
+    # HTML form with the fetched data
     form_html = f"""
     <form method="POST" action="/check_eligibility">
         <input type="hidden" name="investorName" value="{investor_name}">
